@@ -3,7 +3,7 @@ import numpy as np
 
 
 def get_norm(matrix):
-    return np.linalg.norm(matrix, ord=np.inf)
+    return np.linalg.norm(matrix)
 
 
 def get_c(A, b):

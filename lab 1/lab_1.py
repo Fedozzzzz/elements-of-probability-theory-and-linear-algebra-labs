@@ -330,10 +330,10 @@ if __name__ == '__main__':
         mx = get_expected_value(alpha, lam)
         dx = get_variance(alpha, lam)
         print('Математическое ожидание: {}'.format(mx))
-        print('Математическое ожидание (по общей формуле): {}'.format(get_mx(rand_nums, alpha, lam)))
+        # print('Математическое ожидание (по общей формуле): {}'.format(get_mx(rand_nums, alpha, lam)))
         print('Дисперсия: {}'.format(dx))
         print('Стандартное отклонение: {}'.format(math.sqrt(dx)))
-        print('Дисперсия (по общей формуле): {}'.format(get_dx(rand_nums, alpha, lam)))
+        # print('Дисперсия (по общей формуле): {}'.format(get_dx(rand_nums, alpha, lam)))
         if alpha >= 1:
             print('Мода: {}'.format(get_mode(alpha, lam)))
         print('Асимметрия: {}'.format(get_skewness(alpha)))
