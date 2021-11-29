@@ -6,7 +6,7 @@ import statistics as s
 
 
 def plot_histogram(dist_arr, mu, sigma):
-    count, bins, ignored = plt.hist(dist_arr, density=True)
+    count, bins, ignored = plt.hist(dist_arr, 15, density=True)
     plt.plot(bins, 1 / (sigma * np.sqrt(2 * np.pi)) *
              np.exp(- (bins - mu) ** 2 / (2 * sigma ** 2)),
              linewidth=2, color='r')
@@ -137,13 +137,24 @@ sigma_y = math.sqrt(DY)
 norm_dist_x = np.random.normal(MX, sigma_x, N_X)
 norm_dist_y = np.random.normal(MY, sigma_y, N_Y)
 
-# plot_histogram(norm_dist_x, MX, sigma_x)
-# plot_histogram(norm_dist_y, MY, sigma_y)
+plot_histogram(norm_dist_x, MX, sigma_x)
+plot_histogram(norm_dist_y, MY, sigma_y)
 
-
+print('------------------------------------------------------------------')
+print('1)')
 print("Гипотеза верна" if check_H1(norm_dist_x, MX, sigma_x, alpha) else "Гипотеза неверна")
+print('------------------------------------------------------------------')
+print('2)')
 print("Гипотеза верна" if check_H2(norm_dist_x, MX, alpha) else "Гипотеза неверна")
+print('------------------------------------------------------------------')
+print('3)')
 print("Гипотеза верна" if check_H3(norm_dist_x, sigma_x, alpha) else "Гипотеза неверна")
+print('------------------------------------------------------------------')
+print('4)')
 print("Гипотеза верна" if check_H4(norm_dist_x, norm_dist_y, DX, DY, alpha) else "Гипотеза неверна")
+print('------------------------------------------------------------------')
+print('5)')
 print("Гипотеза верна" if check_H5(norm_dist_x, norm_dist_y, alpha) else "Гипотеза неверна")
+print('------------------------------------------------------------------')
+print('6)')
 print("Гипотеза верна" if check_H6(norm_dist_x, norm_dist_y, alpha) else "Гипотеза неверна")
