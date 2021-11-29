@@ -189,10 +189,7 @@ def get_s2(arr, mean):
 
 
 def get_mean(arr):
-    sum = 0
-    for x in arr:
-        sum += x
-    return sum / len(arr)
+    return sum(arr) / len(arr)
 
 
 def get_mx(X, alpha, lam):
@@ -287,24 +284,16 @@ if __name__ == '__main__':
     ]
 
     # params = [
+    #     # {
+    #     #     "alpha": 5,
+    #     #     "lam": 1.0
+    #     # },
+    #     # {
+    #     #     "alpha": 6,
+    #     #     "lam": 1.0
+    #     # },
     #     {
-    #         "alpha": 1.0,
-    #         "lam": 1.0
-    #     },
-    #     {
-    #         "alpha": 1.5,
-    #         "lam": 1.0
-    #     },
-    #     {
-    #         "alpha": 2.5,
-    #         "lam": 1.0
-    #     },
-    #     {
-    #         "alpha": 3.5,
-    #         "lam": 1.0
-    #     },
-    #     {
-    #         "alpha": 4.5,
+    #         "alpha": 20,
     #         "lam": 1.0
     #     },
     # ]
@@ -330,10 +319,8 @@ if __name__ == '__main__':
         mx = get_expected_value(alpha, lam)
         dx = get_variance(alpha, lam)
         print('Математическое ожидание: {}'.format(mx))
-        # print('Математическое ожидание (по общей формуле): {}'.format(get_mx(rand_nums, alpha, lam)))
         print('Дисперсия: {}'.format(dx))
         print('Стандартное отклонение: {}'.format(math.sqrt(dx)))
-        # print('Дисперсия (по общей формуле): {}'.format(get_dx(rand_nums, alpha, lam)))
         if alpha >= 1:
             print('Мода: {}'.format(get_mode(alpha, lam)))
         print('Асимметрия: {}'.format(get_skewness(alpha)))
