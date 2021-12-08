@@ -13,7 +13,8 @@ def plot_histogram(dist_arr, mu, sigma):
     plt.grid()
     plt.show()
 
-
+# Проверка гипотезы о числовом значении математического ожидания
+# нормального распределения при известной дисперсии
 def check_H1(dist_arr, mu, sigma, alpha):
     z_right = stats.norm.ppf(1 - alpha / 2)
     z_left = stats.norm.ppf(alpha / 2)
@@ -27,15 +28,19 @@ def check_H1(dist_arr, mu, sigma, alpha):
 
     return (z < z_right) * (z > z_left)
 
-
+# Проверка гипотезы о числовом значении математического ожидания
+# нормального распределения при неизвестной дисперсии
 def check_H2(dist_arr, mu, alpha):
     N = len(dist_arr)
+
+    # границы критической области
     z_right = stats.t.ppf(1 - alpha / 2, N - 1)
     z_left = stats.t.ppf(alpha / 2, N - 1)
 
     sample_mean = s.mean(dist_arr)
     sample_variance = s.variance(dist_arr, sample_mean)
 
+    # выборочное значение статистики z
     z = (sample_mean - mu) / math.sqrt(sample_variance / N)
 
     print(z_left, z_right)
@@ -43,7 +48,7 @@ def check_H2(dist_arr, mu, alpha):
 
     return (z < z_right) * (z > z_left)
 
-
+# Проверка гипотезы о числовом значении дисперсии нормального распределения
 def check_H3(dist_arr, sigma, alpha):
     N = len(dist_arr)
     z_right = stats.chi2.ppf(1 - alpha / 2, N - 1)
@@ -59,7 +64,8 @@ def check_H3(dist_arr, sigma, alpha):
 
     return (z < z_right) * (z > z_left)
 
-
+# Проверка гипотезы о равенстве математических ожиданий двух нормальных
+# распределений с известными дисперсиями
 def check_H4(dist_arr_x, dist_arr_y, dx, dy, alpha):
     n_x = len(dist_arr_x)
     n_y = len(dist_arr_y)
@@ -77,7 +83,8 @@ def check_H4(dist_arr_x, dist_arr_y, dx, dy, alpha):
 
     return (z < z_right) * (z > z_left)
 
-
+# Проверка гипотезы о равенстве математических ожиданий двух нормальных
+# распределений с неизвестными, но равными дисперсиями
 def check_H5(dist_arr_x, dist_arr_y, alpha):
     n_x = len(dist_arr_x)
     n_y = len(dist_arr_y)
@@ -101,7 +108,7 @@ def check_H5(dist_arr_x, dist_arr_y, alpha):
 
     return (z < z_right) * (z > z_left)
 
-
+# Проверка гипотезы о равенстве дисперсий двух нормальных распределений
 def check_H6(dist_arr_x, dist_arr_y, alpha):
     n_x = len(dist_arr_x)
     n_y = len(dist_arr_y)
@@ -142,19 +149,19 @@ plot_histogram(norm_dist_y, MY, sigma_y)
 
 print('------------------------------------------------------------------')
 print('1)')
-print("Гипотеза верна" if check_H1(norm_dist_x, MX, sigma_x, alpha) else "Гипотеза неверна")
+print("Гипотеза принята" if check_H1(norm_dist_x, MX, sigma_x, alpha) else "Гипотеза отвергнута")
 print('------------------------------------------------------------------')
 print('2)')
-print("Гипотеза верна" if check_H2(norm_dist_x, MX, alpha) else "Гипотеза неверна")
+print("Гипотеза принята" if check_H2(norm_dist_x, MX, alpha) else "Гипотеза отвергнута")
 print('------------------------------------------------------------------')
 print('3)')
-print("Гипотеза верна" if check_H3(norm_dist_x, sigma_x, alpha) else "Гипотеза неверна")
+print("Гипотеза принята" if check_H3(norm_dist_x, sigma_x, alpha) else "Гипотеза отвергнута")
 print('------------------------------------------------------------------')
 print('4)')
-print("Гипотеза верна" if check_H4(norm_dist_x, norm_dist_y, DX, DY, alpha) else "Гипотеза неверна")
+print("Гипотеза принята" if check_H4(norm_dist_x, norm_dist_y, DX, DY, alpha) else "Гипотеза отвергнута")
 print('------------------------------------------------------------------')
 print('5)')
-print("Гипотеза верна" if check_H5(norm_dist_x, norm_dist_y, alpha) else "Гипотеза неверна")
+print("Гипотеза принята" if check_H5(norm_dist_x, norm_dist_y, alpha) else "Гипотеза отвергнута")
 print('------------------------------------------------------------------')
 print('6)')
-print("Гипотеза верна" if check_H6(norm_dist_x, norm_dist_y, alpha) else "Гипотеза неверна")
+print("Гипотеза принята" if check_H6(norm_dist_x, norm_dist_y, alpha) else "Гипотеза отвергнута")
