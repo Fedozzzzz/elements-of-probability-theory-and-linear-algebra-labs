@@ -44,11 +44,15 @@ def get_lam_vector(lam_1, A, eps):
 
     return x_0
 
-
 A = [[1.2, 0.5, 2.0, 1.0],
      [0.5, 1.0, 0.6, 2.0],
      [2.0, 0.6, 1.0, 1.0],
      [1.0, 2.0, 1.0, 2.0]]
+
+# A = [[1.0, 1.5, 0.4, 2.0],
+#      [1.5, -1.2, 1.0, -0.5],
+#      [0.4, 1.0, 2.0, 1.2],
+#      [2.0, -0.5, 1.2, 2.5]]
 
 # из методички
 A_1 = [[1.0, 1.0, 2.0, 3.0],
@@ -56,33 +60,27 @@ A_1 = [[1.0, 1.0, 2.0, 3.0],
        [0.0, 0.0, 1.0, -2.0],
        [0.0, 0.0, 0.0, 2.0]]
 
-# Сашин
-# A = [[1.0, 1.5, 0.4, 2.0],
-#      [1.5, -1.2, 1.0, -0.5],
-#      [0.4, 1.0, 2.0, 1.2],
-#      [2.0, -0.5, 1.2, 2.5]]
-
 # x0 = [[1], [1], [1], [1]]
 x0 = [1, 1, 1, 1]
-eps = math.pow(10, -3)
+eps = math.pow(10, -4)
 lam_1 = get_lam(x0, A, eps)
+print("A: {}".format(np.array(A)))
 print('lam_1: ', lam_1)
+# A1 = A - lam_1 * np.eye(4)
 lam_2 = get_lam(x0, A - lam_1 * np.eye(4), eps) + lam_1
 print('lam_2: ', lam_2)
-
 lam_vec = get_lam_vector(lam_1, A, eps)
 print('lam_vec:', lam_vec)
-print('1)', np.dot(np.array(A), lam_vec))
-print('2)', np.dot(lam_vec, np.array(lam_1)))
-
+print('A * lam_vec', np.dot(np.array(A), lam_vec))
+print('lam_vec * lam_1', np.dot(lam_vec, np.array(lam_1)))
 print('------------------------------------------------------------------')
 print('Пример из методички:')
+print("A: {}".format(np.array(A_1)))
 lam_1 = get_lam(x0, A_1, eps)
 print('lam_1: ', lam_1)
 lam_2 = get_lam(x0, A_1 - lam_1 * np.eye(4), eps) + lam_1
 print('lam_2: ', lam_2)
-
 lam_vec = get_lam_vector(lam_1, A_1, eps)
 print(lam_vec)
-print('1)', np.dot(np.array(A_1), lam_vec))
-print('2)', np.dot(lam_vec, np.array(lam_1)))
+print('A * lam_vec', np.dot(np.array(A_1), lam_vec))
+print('lam_vec * lam_1', np.dot(lam_vec, np.array(lam_1)))
